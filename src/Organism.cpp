@@ -1,22 +1,9 @@
 #include "Organism.h"
 
 // Constructor
-Organism::Organism(const std::vector<std::string>& _genotype, 
-    float _minEnergyThreshold, float _maxEnergyThreshold,
-    float _reproductionThreshold, float _reproductionRate, float _speed, float _direction)
-    : genotype(_genotype),
-    length(_genotype.size()),
-    phenotype(_size, _shape, _coloration),
-    energyLevel(0.0f),
-    consumptionRate(_consumptionRate),
-    minEnergyThreshold(_minEnergyThreshold),
-    maxEnergyThreshold(_maxEnergyThreshold),
-    reproductionThreshold(_reproductionThreshold),
-    reproductionRate(_reproductionRate),
-    speed(_speed),
-    direction(_direction),
-    x(0.0f),
-    y(0.0f) {}
+Organism::Organism(const std::vector<std::string>& _genotype) : genotype(_genotype){
+
+}
 
 // Method to update the phenotype based on stock data
 void Organism::updatePhenotype() {
@@ -32,7 +19,7 @@ void Organism::consumeEnergy() {
 }
 
 // Method to reproduce
-Organism Organism::reproduce() {
+void Organism::reproduce() {
     // Code to create a new organism through reproduction
     // Set the necessary parameters for the new organism based on the parent's traits
     // Return the newly created organism

@@ -7,267 +7,175 @@
 struct Organism {
     // Genotype
     std::vector<std::string> genotype;
-    int length;
-
-    // Characteristics
-    struct Size {
-        float length;
-        float weight;
-    };
-
-    struct Shape {
-        float elongation;
-        float width;
-        float height;
-    };
-
-    struct Coloration {
-        float hue;
-        float brightness;
-        float patternComplexity;
-        float colorContrast;
-    };
-
-    struct Locomotion {
-        float swimmingSpeed;
-        float agility;
-        float endurance;
-    };
-
-    struct FeedingMethod {
-        float filterFeedingEfficiency;
-        float predationSuccessRate;
-        float herbivorySelectivity;
-    };
-
-    struct DigestiveSystem {
-        float efficiency;
-        float toleranceToDifferentFoodTypes;
-        float specializedEnzymes;
-    };
-
-    struct Reproduction {
-        float reproductiveStrategy;
-        float matingBehaviors;
-        float courtshipRituals;
-    };
-
-    struct Metabolism {
-        float energyEfficiency;
-        float metabolicRate;
-        float thermoregulation;
-    };
-
-    struct Resilience {
-        float resistanceToDisease;
-        float abilityToRecoverFromInjuries;
-        float stressTolerance;
-    };
-
-    struct SensoryPerception {
-        float visualAcuity;
-        float auditorySensitivity;
-        float olfactoryDetection;
-        float tactilePerception;
-    };
-
-    struct EnvironmentalAdaptation {
-        float temperatureTolerance;
-        float humidityTolerance;
-        float habitatPreference;
-        float altitudeAdaptation;
-    };
-
-    struct DefenseMechanisms {
-        float camouflageEffectiveness;
-        float toxicityLevel;
-        float physicalDefenses;
-        float warningSignals;
-    };
-
-    struct SocialBehavior {
-        float solitaryVsGroupBehavior;
-        float dominanceHierarchy;
-        float cooperationLevel;
-    };
-
-    struct LifeSpan {
-        float averageLifeSpan;
-        float maximumLifeSpan;
-    };
-
-    struct ReproductiveInvestment {
-        float numberOfOffspring;
-        float parentalCareDuration;
-        float parentalCareIntensity;
-    };
-
-    struct Communication {
-        float vocalizations;
-        float visualSignals;
-        float chemicalSignals;
-    };
-
-    struct GrowthRate {
-        float earlyGrowthRate;
-        float lateGrowthRate;
-    };
-
-    struct AgingProcess {
-        float rateOfSenescence;
-        float ageRelatedDiseases;
-    };
-
-    struct Adaptability {
-        float abilityToLearn;
-        float behavioralFlexibility;
-        float adaptabilityToChangingEnvironments;
-    };
-
-    struct EnergyStorage {
-        float fatReserves;
-        float glycogenStorage;
-    };
-
-    struct HabitatSpecialization {
-        float habitatBreadth;
-        float habitatDepth;
-    };
-
-    struct ImmuneSystem {
-        float resistanceToPathogens;
-        float immuneResponseEfficiency;
-        float immuneMemory;
-    };
-
-    struct ForagingEfficiency {
-        float searchTime;
-        float energyAcquisitionRate;
-        float preyCaptureSuccess;
-    };
-
-    struct BehavioralPlasticity {
-        float adaptabilityToChangingConditions;
-        float responseToEnvironmentalCues;
-    };
-
-    struct EnvironmentalSensitivity {
-        float toleranceToPollutants;
-        float sensitivityToTemperatureChanges;
-        float responseToHabitatDegradation;
-    };
-
-    struct Longevity {
-        float averageLongevity;
-        float lateLifeDecline;
-    };
-
-    struct TerritorySize {
-        float territoryArea;
-        float territorialDefenseIntensity;
-    };
-
-    struct SocialStructure {
-        float hierarchical;
-        float egalitarian;
-        float cooperativeBreeding;
-    };
-
-    struct CognitiveAbilities {
-        float problemSolvingSkills;
-        float memoryCapacity;
-        float learningSpeed;
-    };
-
-    struct MatingSuccess {
-        float matingRate;
-        float mateChoiceSuccess;
-    };
 
     // Phenotype
-    struct Phenotype {
-        Size size;
-        Shape shape;
-        Coloration coloration;
-        Locomotion locomotion;
-        FeedingMethod feedingMethod;
-        DigestiveSystem digestiveSystem;
-        Reproduction reproduction;
-        Metabolism metabolism;
-        Resilience resilience;
-        SensoryPerception sensoryPerception;
-        EnvironmentalAdaptation environmentalAdaptation;
-        DefenseMechanisms defenseMechanisms;
-        SocialBehavior socialBehavior;
-        LifeSpan lifeSpan;
-        ReproductiveInvestment reproductiveInvestment;
-        Communication communication;
-        GrowthRate growthRate;
-        AgingProcess agingProcess;
-        Adaptability adaptability;
-        EnergyStorage energyStorage;
-        HabitatSpecialization habitatSpecialization;
-        ImmuneSystem immuneSystem;
-        ForagingEfficiency foragingEfficiency;
-        BehavioralPlasticity behavioralPlasticity;
-        EnvironmentalSensitivity environmentalSensitivity;
-        Longevity longevity;
-        TerritorySize territorySize;
-        SocialStructure socialStructure;
-        CognitiveAbilities cognitiveAbilities;
-        MatingSuccess matingSuccess;
+    enum Phenotype {
+        length,
+        weight,
 
-        // Constructor
-        Phenotype(const Size& size, const Shape& shape, const Coloration& coloration,
-            const Locomotion& locomotion, const FeedingMethod& feedingMethod, const DigestiveSystem& digestiveSystem,
-            const Reproduction& reproduction, const Metabolism& metabolism, const Resilience& resilience,
-            const SensoryPerception& sensoryPerception, const EnvironmentalAdaptation& environmentalAdaptation,
-            const DefenseMechanisms& defenseMechanisms, const SocialBehavior& socialBehavior,
-            const LifeSpan& lifeSpan, const ReproductiveInvestment& reproductiveInvestment,
-            const Communication& communication, const GrowthRate& growthRate, const AgingProcess& agingProcess,
-            const Adaptability& adaptability, const EnergyStorage& energyStorage,
-            const HabitatSpecialization& habitatSpecialization, const ImmuneSystem& immuneSystem,
-            const ForagingEfficiency& foragingEfficiency, const BehavioralPlasticity& behavioralPlasticity,
-            const EnvironmentalSensitivity& environmentalSensitivity, const Longevity& longevity,
-            const TerritorySize& territorySize, const SocialStructure& socialStructure,
-            const CognitiveAbilities& cognitiveAbilities, const MatingSuccess& matingSuccess)
-            : size(size), shape(shape), coloration(coloration),
-            locomotion(locomotion), feedingMethod(feedingMethod), digestiveSystem(digestiveSystem),
-            reproduction(reproduction), metabolism(metabolism), resilience(resilience),
-            sensoryPerception(sensoryPerception), environmentalAdaptation(environmentalAdaptation),
-            defenseMechanisms(defenseMechanisms), socialBehavior(socialBehavior),
-            lifeSpan(lifeSpan), reproductiveInvestment(reproductiveInvestment),
-            communication(communication), growthRate(growthRate), agingProcess(agingProcess),
-            adaptability(adaptability), energyStorage(energyStorage),
-            habitatSpecialization(habitatSpecialization), immuneSystem(immuneSystem),
-            foragingEfficiency(foragingEfficiency), behavioralPlasticity(behavioralPlasticity),
-            environmentalSensitivity(environmentalSensitivity), longevity(longevity),
-            territorySize(territorySize), socialStructure(socialStructure),
-            cognitiveAbilities(cognitiveAbilities), matingSuccess(matingSuccess) {}
-    } phenotype;
+        // Shape {
+        elongation,
+        width,
+        height,
+
+        // Coloration {
+        hue,
+        saturation,
+        value,
+        patternComplexity,
+
+        // Locomotion {
+        swimmingSpeed,
+        agility,
+        endurance,
+
+        // FeedingMethod {
+        filterFeedingEfficiency,
+        predationSuccessRate,
+        herbivorySelectivity,
+
+        // DigestiveSystem {
+        efficiency,
+        toleranceToDifferentFoodTypes,
+        specializedEnzymes,
+
+        // Reproduction {
+        reproductiveStrategy,
+        matingBehaviors,
+        courtshipRituals,
+
+        // Metabolism {
+        energyEfficiency,
+        metabolicRate,
+        thermoregulation,
+
+        // Resilience {
+        resistanceToDisease,
+        abilityToRecoverFromInjuries,
+        stressTolerance,
+
+        // SensoryPerception {
+        visualAcuity,
+        auditorySensitivity,
+        olfactoryDetection,
+        tactilePerception,
+
+        // EnvironmentalAdaptation {
+        temperatureTolerance,
+        humidityTolerance,
+        habitatPreference,
+        altitudeAdaptation,
+
+        // DefenseMechanisms {
+        camouflageEffectiveness,
+        toxicityLevel,
+        physicalDefenses,
+        warningSignals,
+
+        // SocialBehavior {
+        solitaryVsGroupBehavior,
+        dominanceHierarchy,
+        cooperationLevel,
+
+        // LifeSpan {
+        averageLifeSpan,
+        maximumLifeSpan,
+
+        // ReproductiveInvestment {
+        numberOfOffspring,
+        parentalCareDuration,
+        parentalCareIntensity,
+
+        // Communication {
+        vocalizations,
+        visualSignals,
+        chemicalSignals,
+
+        // GrowthRate {
+        earlyGrowthRate,
+        lateGrowthRate,
+
+        // AgingProcess {
+        rateOfSenescence,
+        ageRelatedDiseases,
+
+        // Adaptability {
+        abilityToLearn,
+        behavioralFlexibility,
+        adaptabilityToChangingEnvironments,
+
+        // EnergyStorage {
+        fatReserves,
+        glycogenStorage,
+
+        // HabitatSpecialization {
+        habitatBreadth,
+        habitatDepth,
+
+        // ImmuneSystem {
+        resistanceToPathogens,
+        immuneResponseEfficiency,
+        immuneMemory,
+
+        // ForagingEfficiency {
+        searchTime,
+        energyAcquisitionRate,
+        preyCaptureSuccess,
+
+        // BehavioralPlasticity {
+        adaptabilityToChangingConditions,
+        responseToEnvironmentalCues,
+
+        // EnvironmentalSensitivity {
+        toleranceToPollutants,
+        sensitivityToTemperatureChanges,
+        responseToHabitatDegradation,
+
+        // Longevity {
+        averageLongevity,
+        lateLifeDecline,
+
+        // TerritorySize {
+        territoryArea,
+        territorialDefenseIntensity,
+
+        // Social {
+        hierarchical,
+        egalitarian,
+        cooperativeBreeding,
+
+        // CognitiveAbilities {
+        problemSolvingSkills,
+        memoryCapacity,
+        learningSpeed,
+
+        // MatingSuccess {
+        matingRate,
+        mateChoiceSuccess,
+
+        // Energy {
+        consumptionRateMultiplier,
+        maxEnergy,
+    };
 
     // Energy
     float energyLevel;
-    float consumptionRate;
-    float minEnergyThreshold;
-    float maxEnergyThreshold;
 
     // Position
     float x;
     float y;
 
     // Reproduction
-    float reproductionThreshold;
-    float reproductionRate;
+    // float reproductionThreshold;
+    // float reproductionRate;
 
     // Movement
     float speed;
     float direction;
 
     // Constructor
-    Organism(const std::vector<std::string>& _genotype, float _size, float _shape, float _coloration,
-        float _consumptionRate, float _minEnergyThreshold, float _maxEnergyThreshold,
-        float _reproductionThreshold, float _reproductionRate, float _speed, float _direction);
+    Organism(const std::vector<std::string>& _genotype);
+        //, float x = 0, float y = 0, float _speed = 0.0, int _direction = 0);
 
     // Method to update the phenotype based on stock data
     void updatePhenotype();
@@ -276,7 +184,7 @@ struct Organism {
     void consumeEnergy();
 
     // Method to reproduce
-    Organism reproduce();
+    void reproduce();
 
     // Method to move
     void move();

@@ -9,10 +9,10 @@ int main() {
     int numCycles = 100;
 
     // Create initial population of organisms
-    std::vector<Organism> organisms;
-    for (int i = 0; i < numOrganisms; ++i) {
-        organisms.push_back(Organism());
-    }
+    // std::vector<Organism> organisms;
+    // for (int i = 0; i < numOrganisms; ++i) {
+    //     organisms.push_back(Organism());
+    // }
 
     // Create environment
     Environment environment;
@@ -20,23 +20,23 @@ int main() {
     environment.initialize();
 
     // Simulation loop
-    for (int cycle = 1; cycle <= numCycles; ++cycle) {
-        std::cout << "Cycle " << cycle << std::endl;
-
-        // Perform actions for each organism
-        for (Organism& organism : organisms) {
-            // Update organism's state
-            organism.update();
-
-            // Move organism
-            organism.move();
-
-            // Interact with environment and other organisms
-            organism.interact(environment, organisms)
-        }
-
-        // Perform any additional simulation logic or analysis here
-    }
+    // for (int cycle = 1; cycle <= numCycles; ++cycle) {
+    //     std::cout << "Cycle " << cycle << std::endl;
+    // 
+    //     // Perform actions for each organism
+    //     for (Organism& organism : organisms) {
+    //         // Update organism's state
+    //         organism.update();
+    // 
+    //         // Move organism
+    //         organism.move();
+    // 
+    //         // Interact with environment and other organisms
+    //         organism.interact(environment, organisms)
+    //     }
+    // 
+    //     // Perform any additional simulation logic or analysis here
+    // }
 
     return 0;
 }

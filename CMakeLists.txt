@@ -2,14 +2,14 @@ cmake_minimum_required(VERSION 3.16)
 project(StockBeastsSimulation)
 
 # Set the C++ standard to C++17
-#set(CMAKE_CXX_STANDARD 17)
+# set(CMAKE_CXX_STANDARD 17)
 
 # Add source files
 set(SOURCE_FILES
     src/main.cpp
     src/Organism.cpp
     src/StockAPI.cpp
-	src/Environment.cpp
+    src/Environment.cpp
 )
 
 # Include Vcpkg toolchain
@@ -22,8 +22,12 @@ add_executable(StockBeastsSimulation ${SOURCE_FILES})
 # Set include directories
 target_include_directories(StockBeastsSimulation PRIVATE "${PROJECT_SOURCE_DIR}/include")
 
+# Find required libraries
+find_package(CURL REQUIRED)
+find_package(nlohmann_json REQUIRED)
+
 # Link libraries
-target_link_libraries(StockBeastsSimulation PRIVATE curl nlohmann_json)
+target_link_libraries(StockBeastsSimulation PRIVATE CURL::libcurl nlohmann_json::nlohmann_json)
 
 # Set output directory
 set_target_properties(StockBeastsSimulation PROPERTIES
@@ -40,4 +44,3 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     # Add optimization flags for Release builds
     target_compile_options(StockBeastsSimulation PRIVATE -O3)
 endif()
-

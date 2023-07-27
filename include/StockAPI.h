@@ -3,10 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 struct StockData {
     std::string ticker;
-    float price;
+    int price;
     int volume;
     // Add any additional stock data fields as needed
 };

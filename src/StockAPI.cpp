@@ -45,13 +45,25 @@ bool StockAPI::fetchStockData(std::unordered_map<std::string, StockData>& stockD
 
         json jsonData = json::parse(response);
 
+        auto floatToFiveDigitInt = [](float value) {
+            
+        };
+
+        std::string url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=";
+        for (const auto& pair : stockData) {
+            const std::string& ticker = pair.first;
+            url += ticker + ",";
+        }
+
         for (const auto& pair : stockData) {
             const std::string& ticker = pair.first;
             if (jsonData.find(ticker) != jsonData.end()) {
                 json quoteData = jsonData[ticker]["quote"];
                 StockData data;
                 data.ticker = ticker;
-                data.price = quoteData["latestPrice"];
+                float price = quoteData["latestPrice"];
+                while (price < 10000) price *= 10;
+                data.price = static_cast<int>(price);
                 data.volume = quoteData["latestVolume"];
                 // Extract any additional stock data fields as needed
 
