@@ -2,20 +2,27 @@
 #include <vector>
 #include "Organism.h"
 #include "Environment.h"
+#include "StockAPI.h"
 
 int main() {
+    StockAPI stocks = StockAPI();
+
     // Simulation parameters
-    int numOrganisms = 100;
+    int numOrganisms = 3;
     int numCycles = 100;
 
     // Create initial population of organisms
-    // std::vector<Organism> organisms;
-    // for (int i = 0; i < numOrganisms; ++i) {
-    //     organisms.push_back(Organism());
-    // }
+    std::vector<Organism> organisms(numOrganisms);
+    for (int i = 0; i < numOrganisms; ++i) {
+        Organism organism = Organism();
+        for (int j = 0; j < organism.genotypeSize; j++) {
+
+            organism.genotype.push_back()
+        }
+    }
 
     // Create environment
-    Environment environment;
+    Environment environment(100,100);
     // Initialize environment (set up initial conditions, boundaries, etc.)
     environment.initialize();
 

@@ -1,12 +1,12 @@
 #include "StockAPI.h"
 #include <iostream>
+#include <string>
 #include <curl/curl.h>
 #include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
 
 // Callback function for curl to write received data
-// receive data from the response of an HTTP request made with libcurl and store it in a buffer
 static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* buffer) {
     size_t totalSize = size * nmemb;
     buffer->append(static_cast<char*>(contents), totalSize);
@@ -19,7 +19,7 @@ StockAPI::StockAPI(const std::string& apiKey) : apiKey_(apiKey) {
 }
 
 bool StockAPI::fetchStockData(std::unordered_map<std::string, StockData>& stockData) {
-    std::string url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=";
+    std::string url = "https://finnhub.io/api/v1/stock/market/batch?symbols=";
     for (const auto& pair : stockData) {
         const std::string& ticker = pair.first;
         url += ticker + ",";
@@ -45,25 +45,13 @@ bool StockAPI::fetchStockData(std::unordered_map<std::string, StockData>& stockD
 
         json jsonData = json::parse(response);
 
-        auto floatToFiveDigitInt = [](float value) {
-            
-        };
-
-        std::string url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=";
-        for (const auto& pair : stockData) {
-            const std::string& ticker = pair.first;
-            url += ticker + ",";
-        }
-
         for (const auto& pair : stockData) {
             const std::string& ticker = pair.first;
             if (jsonData.find(ticker) != jsonData.end()) {
                 json quoteData = jsonData[ticker]["quote"];
                 StockData data;
                 data.ticker = ticker;
-                float price = quoteData["latestPrice"];
-                while (price < 10000) price *= 10;
-                data.price = static_cast<int>(price);
+                data.price = quoteData["latestPrice"];
                 data.volume = quoteData["latestVolume"];
                 // Extract any additional stock data fields as needed
 

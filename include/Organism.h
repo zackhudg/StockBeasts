@@ -5,158 +5,172 @@
 #include <vector>
 
 struct Organism {
-    // Genotype
-    std::vector<std::string> genotype;
 
     // Phenotype
     enum Phenotype {
-        length,
-        weight,
 
-        // Shape {
-        elongation,
-        width,
-        height,
+        // SHAPE {
+        // ELONGATION,
+        WIDTH,
+        LENGTH,
 
-        // Coloration {
-        hue,
-        saturation,
-        value,
-        patternComplexity,
+        // COLORATION {
+        HUE,
+        SATURATION,
+        VALUE,
+        ALPHA,
+        // PATTERNCOMPLEXITY,
 
-        // Locomotion {
-        swimmingSpeed,
-        agility,
-        endurance,
+        // LOCOMOTION {
+        SWIMMINGSPEED,
+        // AGILITY,
+        // ENDURANCE,
+        // WANT VARIABLE SPEED AS WELL
 
-        // FeedingMethod {
-        filterFeedingEfficiency,
-        predationSuccessRate,
-        herbivorySelectivity,
+        // FEEDINGMETHOD {
+        // FILTERFEEDINGEFFICIENCY,
+        // PREDATIONEFFICIENCY,
+        // HERBIVORYSELECTIVITY,
 
-        // DigestiveSystem {
-        efficiency,
-        toleranceToDifferentFoodTypes,
-        specializedEnzymes,
+        // DIGESTIVESYSTEM {
+        EATING_EFFICIENCY,
+        EATING_SPEED,
+        // TOLERANCETODIFFERENTFOODTYPES,
+        // SPECIALIZEDENZYMES,
 
-        // Reproduction {
-        reproductiveStrategy,
-        matingBehaviors,
-        courtshipRituals,
+        // REPRODUCTION {
+        // REPRODUCTIVESTRATEGY,
+        // MATINGBEHAVIORS,
+        // COURTSHIPRITUALS,
 
-        // Metabolism {
-        energyEfficiency,
-        metabolicRate,
-        thermoregulation,
+        // METABOLISM {
+        ENERGY_EFFICIENCY,
+        // METABOLICRATE,
+        // THERMOREGULATION,
 
-        // Resilience {
-        resistanceToDisease,
-        abilityToRecoverFromInjuries,
-        stressTolerance,
+        // RESILIENCE {
+        RESISTANCE_TO_TOXINS,
+        // ABILITYTORECOVERFROMINJURIES,
+        // STRESSTOLERANCE,
 
-        // SensoryPerception {
-        visualAcuity,
-        auditorySensitivity,
-        olfactoryDetection,
-        tactilePerception,
+        // SENSORYPERCEPTION {
+        // VISUALACUITY,           //OBSTACLES, LIGHT, NUTRIENTS, TOXINS
+        // AUDITORYSENSITIVITY,
+        // OLFACTORYDETECTION,     //NUTRIENTS, TOXINS
+        // TACTILEPERCEPTION,      //TOXINS, CURRENT
+        
 
-        // EnvironmentalAdaptation {
-        temperatureTolerance,
-        humidityTolerance,
-        habitatPreference,
-        altitudeAdaptation,
+        // ENVIRONMENTALADAPTATION {
+        //TEMPERATURETOLERANCE,
+        //HUMIDITYTOLERANCE,
+        LIGHT_ATTRACTION,
+        OBSTACLE_ATTRACTION,
+        NUTRIENT_ATTRACTION,
+        TOXIC_ATTRACTION,
+        CURRENT_ATTRACTION,
+        SAME_SPECIES_ATTRACTION,
+        OTHER_SPECIES_ATTRACTION,
+        //ALTITUDEADAPTATION,
 
-        // DefenseMechanisms {
-        camouflageEffectiveness,
-        toxicityLevel,
-        physicalDefenses,
-        warningSignals,
+        // DEFENSEMECHANISMS {
+        // CAMOUFLAGEEFFECTIVENESS,
+        // TOXICITYLEVEL,
+        // PHYSICALDEFENSES,
+        // WARNINGSIGNALS,
 
-        // SocialBehavior {
-        solitaryVsGroupBehavior,
-        dominanceHierarchy,
-        cooperationLevel,
+        // SOCIALBEHAVIOR {
+        // SOLITARYVSGROUPBEHAVIOR,
+        // DOMINANCEHIERARCHY,
+        COMMUNICATION,
 
-        // LifeSpan {
-        averageLifeSpan,
-        maximumLifeSpan,
+        // LIFESPAN {
+        LIFESPAN,
+        // MAXIMUMLIFESPAN,
 
-        // ReproductiveInvestment {
-        numberOfOffspring,
-        parentalCareDuration,
-        parentalCareIntensity,
+        // REPRODUCTIVEINVESTMENT {
+        NUMBER_OF_OFFSPRING,
+        // PARENTALCAREDURATION,
+        // PARENTALCAREINTENSITY,
 
-        // Communication {
-        vocalizations,
-        visualSignals,
-        chemicalSignals,
+        // COMMUNICATION {
+        // VOCALIZATIONS,
+        // VISUALSIGNALS,
+        // CHEMICALSIGNALS,
 
-        // GrowthRate {
-        earlyGrowthRate,
-        lateGrowthRate,
+        // GROWTHRATE {
+        GROWTH_RATE,
+        // LATEGROWTHRATE,
 
-        // AgingProcess {
-        rateOfSenescence,
-        ageRelatedDiseases,
+        // AGINGPROCESS {
+        // RATEOFSENESCENCE,
+        // AGERELATEDDISEASES,
 
-        // Adaptability {
-        abilityToLearn,
-        behavioralFlexibility,
-        adaptabilityToChangingEnvironments,
+        // ADAPTABILITY {
+        // ABILITYTOLEARN,
+        // BEHAVIORALFLEXIBILITY,
+        // ADAPTABILITYTOCHANGINGENVIRONMENTS,
 
-        // EnergyStorage {
-        fatReserves,
-        glycogenStorage,
+        // ENERGYSTORAGE {
+        // FATRESERVES,
+        // GLYCOGENSTORAGE,
 
-        // HabitatSpecialization {
-        habitatBreadth,
-        habitatDepth,
+        // HABITATSPECIALIZATION {
+        // HABITATBREADTH,
+        // HABITATDEPTH,
 
-        // ImmuneSystem {
-        resistanceToPathogens,
-        immuneResponseEfficiency,
-        immuneMemory,
+        // IMMUNESYSTEM {
+        // RESISTANCETOPATHOGENS,
+        // IMMUNERESPONSEEFFICIENCY,
+        // IMMUNEMEMORY,
 
-        // ForagingEfficiency {
-        searchTime,
-        energyAcquisitionRate,
-        preyCaptureSuccess,
+        // FORAGINGEFFICIENCY {
+        // SEARCHTIME,
+        // ENERGYACQUISITIONRATE,
+        // PREYCAPTURESUCCESS,
 
-        // BehavioralPlasticity {
-        adaptabilityToChangingConditions,
-        responseToEnvironmentalCues,
+        // BEHAVIORALPLASTICITY {
+        // ADAPTABILITYTOCHANGINGCONDITIONS,
+        // RESPONSETOENVIRONMENTALCUES,
 
-        // EnvironmentalSensitivity {
-        toleranceToPollutants,
-        sensitivityToTemperatureChanges,
-        responseToHabitatDegradation,
+        // ENVIRONMENTALSENSITIVITY {
+        // TOLERANCETOPOLLUTANTS,
+        // SENSITIVITYTOTEMPERATURECHANGES,
+        // RESPONSETOHABITATDEGRADATION,
 
-        // Longevity {
-        averageLongevity,
-        lateLifeDecline,
+        // LONGEVITY {
+        // AVERAGELONGEVITY,
+        // LATELIFEDECLINE,
 
-        // TerritorySize {
-        territoryArea,
-        territorialDefenseIntensity,
+        // TERRITORYSIZE {
+        // TERRITORYAREA,
+        // TERRITORIALDEFENSEINTENSITY,
 
-        // Social {
-        hierarchical,
-        egalitarian,
-        cooperativeBreeding,
+        // SOCIAL {
+        // HIERARCHICAL,
+        // EGALITARIAN,
+        // COOPERATIVEBREEDING,
 
-        // CognitiveAbilities {
-        problemSolvingSkills,
-        memoryCapacity,
-        learningSpeed,
+        // COGNITIVEABILITIES {
+        // PROBLEMSOLVINGSKILLS,
+        // MEMORYCAPACITY,
+        // LEARNINGSPEED,
 
-        // MatingSuccess {
-        matingRate,
-        mateChoiceSuccess,
+        // MATINGSUCCESS {
+        // MATINGRATE,
+        // MATECHOICESUCCESS,
 
-        // Energy {
-        consumptionRateMultiplier,
-        maxEnergy,
+        // ENERGY {
+        // CONSUMPTIONRATEMULTIPLIER,
+        MAX_ENERGY,
+
+        // META 
+        // PRIORITY,
+        GENOTYPE_SIZE
     };
+
+    // Genotype
+    const static int genotypeSize = GENOTYPE_SIZE-1;
+    std::vector<std::string> genotype;
 
     // Energy
     float energyLevel;
@@ -173,24 +187,23 @@ struct Organism {
     float speed;
     float direction;
 
+    // float priority;
+
     // Constructor
-    Organism(const std::vector<std::string>& _genotype);
+    Organism();
         //, float x = 0, float y = 0, float _speed = 0.0, int _direction = 0);
 
     // Method to update the phenotype based on stock data
-    void updatePhenotype();
-
-    // Method to consume energy
-    void consumeEnergy();
-
-    // Method to reproduce
-    void reproduce();
-
-    // Method to move
-    void move();
-
-    // Method to interact with the environment and other organisms
-    void interact();
+    // void updatePhenotype();
+    // 
+    // // Method to reproduce
+    // void reproduce();
+    // 
+    // // Method to move
+    // void move();
+    // 
+    // // Method to interact with the environment and other organisms
+    // void interact();
 
     // Add more methods as needed
 };

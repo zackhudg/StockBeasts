@@ -8,7 +8,7 @@
 
 class Environment {
 public:
-    Environment();  // Constructor
+    Environment(int width, int height);  // Constructor
     void initialize();
     void update();
 
@@ -20,12 +20,14 @@ private:
     template <typename T, typename DistributionFunc>
     void generateZone(std::vector<std::vector<T>>& zone, DistributionFunc&& distributionFunc);
 
-    std::vector<std::vector<float>> nutrients;  // Nutrient distribution in the environment
+    std::vector<std::vector<float>> nutrients, newNutrients;  // Nutrient distribution in the environment
+    // std::vector<std::vector<float>> heatZones;
     std::vector<std::vector<float>> currentX;
     std::vector<std::vector<float>> currentY;
     std::vector<std::vector<bool>> obstacles;  // Obstacle distribution in the environment
     std::vector<std::vector<bool>> toxicZones;  // Toxic zone distribution in the environment
-    std::vector<std::vector<bool>> lightZones;
+    // std::vector<std::vector<bool>> lightZones;
+
 
     /*void distributeNutrients();
     void generateObstacles();
