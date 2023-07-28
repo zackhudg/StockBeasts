@@ -18,8 +18,10 @@ public:
 
     bool fetchStockData(std::unordered_map<std::string, StockData>& stockData);
 
+    bool StockAPI::initStockMap(std::unordered_map<std::string, StockData>& stockData, int numRandomStocks);
+
 private:
-    std::string apiKey_;
+    std::string apiKey;
 };
 
 #endif  // STOCKAPI_H

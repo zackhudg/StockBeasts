@@ -169,7 +169,7 @@ struct Organism {
     };
 
     // Genotype
-    const static int genotypeSize = GENOTYPE_SIZE-1;
+    //const static int genotypeSize = GENOTYPE_SIZE-1;
     std::vector<std::string> genotype;
 
     // Energy

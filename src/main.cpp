@@ -3,26 +3,34 @@
 #include "Organism.h"
 #include "Environment.h"
 #include "StockAPI.h"
+#include "config.h"
 
 int main() {
-    StockAPI stocks = StockAPI();
 
     // Simulation parameters
-    int numOrganisms = 3;
-    int numCycles = 100;
+    int numOrganisms = 10;
+    int numCycles = 0;
+    int height = 100;
+    int width = 100;
 
-    // Create initial population of organisms
+    StockAPI stocks = StockAPI(API_KEY);
+    std::unordered_map<std::string, StockData> stockData;
+    if (!stocks.initStockMap(stockData, numOrganisms * (Organism::GENOTYPE_SIZE))) {
+        std::cout << "Faile to initialize stock map.\n";
+    }
+
+        // Create initial population of organisms
     std::vector<Organism> organisms(numOrganisms);
-    for (int i = 0; i < numOrganisms; ++i) {
-        Organism organism = Organism();
-        for (int j = 0; j < organism.genotypeSize; j++) {
-
-            organism.genotype.push_back()
+    {
+        int counter = 0;
+        for (const auto& entry : stockData) {
+            const std::string& key = entry.first;
+            organisms[counter / Organism::GENOTYPE_SIZE].genotype[counter % Organism::GENOTYPE_SIZE] = key;
         }
     }
 
     // Create environment
-    Environment environment(100,100);
+    Environment environment(height,width);
     // Initialize environment (set up initial conditions, boundaries, etc.)
     environment.initialize();
 

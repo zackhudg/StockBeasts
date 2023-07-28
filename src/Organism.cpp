@@ -2,7 +2,7 @@
 
 // Constructor
 Organism::Organism() {
-    std::vector<std::string> genotype = std::vector<std::string>(genotypeSize);
+    std::vector<std::string> genotype(GENOTYPE_SIZE);
     
 }
 
