@@ -8,7 +8,6 @@
 
 using json = nlohmann::json;
 
-// Callback function for curl to write received data
 static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* buffer) {
     size_t totalSize = size * nmemb;
     buffer->append(static_cast<char*>(contents), totalSize);
@@ -16,12 +15,11 @@ static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::stri
 }
 
 StockAPI::StockAPI(const std::string& apiKey) : apiKey(apiKey) {
-    // Initialize any necessary variables or configurations
     curl_global_init(CURL_GLOBAL_ALL);
 }
 
 bool StockAPI::initStockMap(std::unordered_map<std::string, StockData>& stockData, int numRandomStocks) {
-    std::string symbolUrl = "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=" + apiKey;
+    std::string symbolUrl = "http://financialmodelingprep.com/api/v3/stock/list?apikey=" + apiKey;
 
     CURL* curl = curl_easy_init();
     if (!curl) {
@@ -45,38 +43,33 @@ bool StockAPI::initStockMap(std::unordered_map<std::string, StockData>& stockDat
     json jsonData = json::parse(response);
     std::vector<std::string> symbols;
 
-    // Extract stock symbols from the API response
     for (const auto& entry : jsonData) {
-        if (entry["type"] == "Common Stock") {
-            symbols.push_back(entry["symbol"]);
-        }
+        symbols.push_back(entry["symbol"]);
     }
 
-    // Select random stock symbols
-    srand(static_cast<unsigned int>(time(NULL))); // Seed the random number generator
+    srand(static_cast<unsigned int>(time(NULL)));
     std::random_shuffle(symbols.begin(), symbols.end());
     int numSelectedStocks = std::min(numRandomStocks, static_cast<int>(symbols.size()));
 
-    // Fetch stock data for selected stock symbols and populate the stock map
     for (int i = 0; i < numSelectedStocks; ++i) {
         StockData data;
         if (!fetchStockData(stockData)) {
             std::cout << "Failed to initialize stock.\n";
         }
     }
-    
-    std::cout << "Initialized stock map.\n";
-    return true;
 
+    return true;
+    std::cout << "Initialized stock map.\n";
 }
 
 bool StockAPI::fetchStockData(std::unordered_map<std::string, StockData>& stockData) {
-    std::string url = "https://finnhub.io/api/v1/stock/market/batch?symbols=";
+    // Adjust this URL and parsing logic based on FMP's API structure
+    std::string url = "https://financialmodelingprep.com/api/v3/quote/";
     for (const auto& pair : stockData) {
         const std::string& ticker = pair.first;
         url += ticker + ",";
     }
-    url += "&types=quote&token=" + apiKey;
+    url += "?apikey=" + apiKey;
 
     CURL* curl = curl_easy_init();
     if (curl) {
@@ -100,15 +93,13 @@ bool StockAPI::fetchStockData(std::unordered_map<std::string, StockData>& stockD
         for (const auto& pair : stockData) {
             const std::string& ticker = pair.first;
             if (jsonData.find(ticker) != jsonData.end()) {
-                json quoteData = jsonData[ticker]["quote"];
+                json quoteData = jsonData[ticker];
                 StockData data;
                 data.ticker = ticker;
-                float price = quoteData["latestPrice"];
+                float price = quoteData["price"];
                 while (price < 10000) price *= 10;
                 data.price = static_cast<int>(price);
-                data.volume = quoteData["latestVolume"];
-                // Extract any additional stock data fields as needed
-
+                data.volume = quoteData["volume"];
                 stockData.emplace(ticker, data);
             }
         }
