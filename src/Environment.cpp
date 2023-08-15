@@ -8,6 +8,10 @@ Environment::Environment(int width, int height) : width(width), height(height) {
     // Initialize member variables of the environment
 
 void Environment::initialize() {
+
+#ifdef _DEBUG
+    std::cout << "Init Environment...\n";
+#endif
     // Perform initialization steps for the environment
     nutrients.resize(width, std::vector<float>(height, 0.0f));
     obstacles.resize(width, std::vector<bool>(height, false));
@@ -52,31 +56,15 @@ void Environment::initialize() {
     // Other potential speed improvements:  init this as a map datatype, with coordinate:value pairs since lots of 0s (wasted space)
     //                                      use SIMD instructions for basically matrix addition
     newNutrients = nutrients;
-
 #ifdef _DEBUG
-    std::string n = "Nutrients\n", o = "Obstacles\n", l = "Light\n", t = "Toxic\n", x = "CurrentX\n", y = "CurrentY\n";
-    std::vector<std::string*> zones = { &n, &o, &l, &t, &x, &y };
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            *zones[0] += " " + std::to_string(nutrients[i][j]);
-            *zones[1] += " " + std::to_string(obstacles[i][j]);
-            // *zones[2] += " " + std::to_string(lightZones[i][j]);
-            *zones[3] += " " + std::to_string(toxicZones[i][j]);
-            *zones[4] += " " + std::to_string(currentX[i][j]);
-            *zones[5] += " " + std::to_string(currentY[i][j]);
-        }
-        for (std::string* zoneString : zones) {
-            *zoneString += "\n";
-        }
-    }
-    for (std::string* zoneString : zones) {
-        std::cout << *zoneString << "\n";
-    }
+    std::cout << "Finished!\n";
 #endif
-
 }
 
 void Environment::update() {
+#ifdef _DEBUG
+    std::cout << "Update Environment...\n";
+#endif
     // potential speed improvements:  init this as a map datatype, with coordinate:value pairs since lots of 0s (wasted space)
     //                                      use SIMD instructions for basically matrix addition
     for (int i = 0; i < height; i++) {
@@ -84,15 +72,24 @@ void Environment::update() {
             nutrients[i][j] += newNutrients[i][j];
         }
     }
+#ifdef _DEBUG
+    std::cout << "Finished!\n";
+#endif
 }
 
 // Function template definition
 template <typename T, typename DistributionFunc>
 void Environment::generateZone(std::vector<std::vector<T>>& zone, DistributionFunc&& distributionFunc) {
+#ifdef _DEBUG
+    std::cout << "Generating Zone...\n";
+#endif
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
             zone[i][j] = distributionFunc(static_cast<float>(i), static_cast<float>(j));
         }
     }
+#ifdef _DEBUG
+    std::cout << "Finished!\n";
+#endif
 }
 

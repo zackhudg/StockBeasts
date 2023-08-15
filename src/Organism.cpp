@@ -1,8 +1,14 @@
 #include "Organism.h"
+#ifdef _DEBUG
+#include <iostream>
+#endif
 
 // Constructor
 Organism::Organism() {
     std::vector<std::string> genotype(GENOTYPE_SIZE);
+#ifdef _DEBUG
+    std::cout << "Constructed Organism\n";
+#endif
     
 }
 

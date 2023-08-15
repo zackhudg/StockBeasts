@@ -1,10 +1,10 @@
 #define NOMINMAX
 #include <algorithm>
 #include "StockAPI.h"
-#include <iostream>
 #include <string>
 #include <curl/curl.h>
 #include "nlohmann/json.hpp"
+#include <iostream>
 
 using json = nlohmann::json;
 
@@ -19,6 +19,9 @@ StockAPI::StockAPI(const std::string& apiKey) : apiKey(apiKey) {
 }
 
 bool StockAPI::initStockMap(std::unordered_map<std::string, StockData>& stockData, int numRandomStocks) {
+#ifdef _DEBUG
+    std::cout << "Init Stock Map...\n";
+#endif
     std::string symbolUrl = "http://financialmodelingprep.com/api/v3/stock/list?apikey=" + apiKey;
 
     CURL* curl = curl_easy_init();
@@ -59,10 +62,17 @@ bool StockAPI::initStockMap(std::unordered_map<std::string, StockData>& stockDat
     }
 
     return true;
+#ifdef _DEBUG
     std::cout << "Initialized stock map.\n";
+#endif
+    
 }
 
 bool StockAPI::fetchStockData(std::unordered_map<std::string, StockData>& stockData) {
+#ifdef _DEBUG
+    std::cout << "Fetching Stock Data...\n";
+#endif
+
     // Adjust this URL and parsing logic based on FMP's API structure
     std::string url = "https://financialmodelingprep.com/api/v3/quote/";
     for (const auto& pair : stockData) {
