@@ -9,6 +9,7 @@ struct StockData {
     std::string ticker;
     int price;
     int volume;
+    int volumeDiff;
     // Add any additional stock data fields as needed
 };
 
@@ -18,7 +19,7 @@ public:
 
     bool fetchStockData(std::unordered_map<std::string, StockData>& stockData);
 
-    bool StockAPI::initStockMap(std::unordered_map<std::string, StockData>& stockData, int numRandomStocks);
+    bool StockAPI::initStockMap(std::unordered_map<std::string, StockData>& stockData);
 
 private:
     std::string apiKey;

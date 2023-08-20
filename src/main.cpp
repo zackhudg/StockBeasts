@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <random>
 #include "Organism.h"
 #include "Environment.h"
 #include "StockAPI.h"
@@ -8,24 +9,25 @@
 int main() {
 
     // Simulation parameters
-    int numOrganisms = 10;
+    int numOrganisms = 3;
     int numCycles = 0;
-    int height = 100;
-    int width = 100;
+    int height = 20;
+    int width = 20;
 
     StockAPI stocks = StockAPI(API_KEY);
     std::unordered_map<std::string, StockData> stockData;
-    if (!stocks.initStockMap(stockData, numOrganisms * (Organism::GENOTYPE_SIZE))) {
-        std::cout << "Faile to initialize stock map.\n";
+    if (!stocks.initStockMap(stockData)) {
+        std::cout << "Failed to initialize stock map.\n";
     }
 
-        // Create initial population of organisms
+    // Create initial population of organisms
+    //TODO: shuffle the stock order probably.
     std::vector<Organism> organisms(numOrganisms);
-    {
-        int counter = 0;
-        for (const auto& entry : stockData) {
-            const std::string& key = entry.first;
-            organisms[counter / Organism::GENOTYPE_SIZE].genotype[counter % Organism::GENOTYPE_SIZE] = key;
+    for (int i = 0; i < numOrganisms; i++) {
+        for (int j = 0; j < Organism::GENOTYPE_SIZE; j++){
+            auto randomIterator = std::next(stockData.begin(), std::rand() % stockData.size());
+            const std::string& key = randomIterator->first;
+            organisms[i].genotype.push_back(key);
         }
     }
 
